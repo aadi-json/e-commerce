@@ -15,6 +15,8 @@ import MyState from "./Context/Data/myState";
 import ProductInfo from "./Pages/Productinfo/ProductInfo";
 import Login from "./Pages/Registration/Login";
 import Signup from "./Pages/Registration/Signup";
+import AddProduct from "./Pages/Admin/Page/AddProduct";
+import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
 import DashboardTab from "./Pages/Admin/Dashboard/DashboardTab";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,15 +27,51 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Order" element={<Order />} />
+          <Route
+            path="/Order"
+            element={
+              <ProtectedRouteForUser>
+                <Order />
+              </ProtectedRouteForUser>
+            }
+          />
           <Route path="/nopage" element={<Nopage />} />
-          <Route path="/Allproducts" element={<Dashboard />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/ProductInfo/:id" element={<ProductInfo />} />
           <Route path="/Cart" element={<Cart />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/DashboardTab" element={<DashboardTab />} />
+          <Route
+            path="/AddProduct"
+            element={
+              <ProtectedRouteForAdmin>
+                <AddProduct />
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
+            path="/UpdateProduct"
+            element={
+              <ProtectedRouteForAdmin>
+                <UpdateProduct />
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
+            path="/Dashboard"
+            element={
+              <ProtectedRouteForAdmin>
+                <Dashboard />
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
+            path="/DashboardTab"
+            element={
+              <ProtectedRouteForAdmin>
+                <DashboardTab />
+              </ProtectedRouteForAdmin>
+            }
+          />
         </Routes>
         <ToastContainer />
       </Router>
@@ -57,7 +95,9 @@ const ProtectedRouteForUser = (children) => {
 
 const ProtectedRouteForAdmin = () => {
   const admin = JSON.parse(localStorage.getItem("user"));
-  if (users.user) {
+  if (admin.user.email === "aditya@gmal.com") {
+    return children;
   } else {
+    <Navigate to="/login" />;
   }
 };

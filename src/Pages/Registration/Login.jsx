@@ -32,7 +32,7 @@ const Login = () => {
       });
       window.location.href = "/";
       setLoading(false);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log(error);
 

@@ -25,12 +25,12 @@ function Home() {
 
   return (
     <Layout>
-      <button className="bg-gray-400 p-5  " onClick={() => addCart()}>
+      {/* <button className="bg-gray-400 p-5  " onClick={() => addCart()}>
         add
       </button>
       <button className="bg-gray-400 p-5  " onClick={() => deleteCart()}>
         delete
-      </button>
+      </button> */}
       <Hero />
       <Filter />
       <ProductCard />
