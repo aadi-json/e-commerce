@@ -1,26 +1,24 @@
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import myContext from "../../Context/Data/myContext";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import myContext from "../../context/data/myContext";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { auth, fireDB } from "../../Firebase/FirebaseConfig";
-import Loader from "../../Components/Loader/Loader";
+import { auth, fireDB } from "../../firebase/FirebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import Loader from "../../components/loader/Loader";
 
-const Login = () => {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const context = useContext(myContext);
-
   const { loading, setLoading } = context;
 
   const signin = async () => {
     setLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-
-      localStorage.setItem = ("user", JSON.stringify(result));
-      toast.success("Login Successfully", {
+      localStorage.setItem("user", JSON.stringify(result));
+      toast.success("Signin Successfully", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: true,
@@ -32,13 +30,10 @@ const Login = () => {
       });
       window.location.href = "/";
       setLoading(false);
-      // console.log(result);
     } catch (error) {
-      console.log(error);
-
-      toast.error("Signin Failde", {
+      toast.error("Sigin Failed", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 5000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -97,6 +92,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

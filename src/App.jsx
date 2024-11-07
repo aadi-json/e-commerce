@@ -1,25 +1,22 @@
-import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import "./App.css";
-import Home from "./Pages/Home/Home";
-import Order from "./Pages/Order/Order";
-import Nopage from "./Pages/Nopage/Nopage";
-import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
-import Cart from "./Pages/Cart/Cart";
-import MyState from "./Context/Data/myState";
-import ProductInfo from "./Pages/Productinfo/ProductInfo";
+import Home from "./pages/home/Home";
+import MyState from "./context/data/myState";
+import Order from "./pages/order/Order";
+import NoPage from "./pages/nopage/NoPage";
+import Cart from "./pages/cart/Cart";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
+import ProductInfo from "./pages/productInfo/ProductInfo";
 import Login from "./Pages/Registration/Login";
 import Signup from "./Pages/Registration/Signup";
-import AddProduct from "./Pages/Admin/Page/AddProduct";
-import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
-import DashboardTab from "./Pages/Admin/Dashboard/DashboardTab";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddProduct from "./Pages/Admin/Page/AddProduct";
+import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
 
 function App() {
   return (
@@ -28,50 +25,42 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
-            path="/Order"
+            path="/order"
             element={
-              <ProtectedRouteForUser>
+              <ProtectedRoutes>
                 <Order />
-              </ProtectedRouteForUser>
+              </ProtectedRoutes>
             }
           />
-          <Route path="/nopage" element={<Nopage />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
-          <Route path="/ProductInfo/:id" element={<ProductInfo />} />
-          <Route path="/Cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
           <Route
-            path="/AddProduct"
+            path="/dashboard"
             element={
-              <ProtectedRouteForAdmin>
-                <AddProduct />
-              </ProtectedRouteForAdmin>
-            }
-          />
-          <Route
-            path="/UpdateProduct"
-            element={
-              <ProtectedRouteForAdmin>
-                <UpdateProduct />
-              </ProtectedRouteForAdmin>
-            }
-          />
-          <Route
-            path="/Dashboard"
-            element={
-              <ProtectedRouteForAdmin>
+              <ProtectedRoutesForAdmin>
                 <Dashboard />
-              </ProtectedRouteForAdmin>
+              </ProtectedRoutesForAdmin>
+            }
+          />
+          <Route path="/productinfo" element={<ProductInfo />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/addproduct"
+            element={
+              <ProtectedRoutesForAdmin>
+                <AddProduct />
+              </ProtectedRoutesForAdmin>
             }
           />
           <Route
-            path="/DashboardTab"
+            path="/updateproduct"
             element={
-              <ProtectedRouteForAdmin>
-                <DashboardTab />
-              </ProtectedRouteForAdmin>
+              <ProtectedRoutesForAdmin>
+                <UpdateProduct />
+              </ProtectedRoutesForAdmin>
             }
           />
+          <Route path="/*" element={<NoPage />} />
         </Routes>
         <ToastContainer />
       </Router>
@@ -81,9 +70,7 @@ function App() {
 
 export default App;
 
-// protected route for user
-
-const ProtectedRouteForUser = (children) => {
+export const ProtectedRoutes = ({ children }) => {
   if (localStorage.getItem("user")) {
     return children;
   } else {
@@ -91,13 +78,12 @@ const ProtectedRouteForUser = (children) => {
   }
 };
 
-//protected route for admin
-
-const ProtectedRouteForAdmin = () => {
+export const ProtectedRoutesForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("user"));
-  if (admin.user.email === "aditya@gmal.com") {
+  console.log(admin.user.email);
+  if (admin.user.email === "knupadhyay784@gmail.com") {
     return children;
   } else {
-    <Navigate to="/login" />;
+    return <Navigate to="/login" />;
   }
 };

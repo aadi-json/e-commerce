@@ -1,11 +1,11 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import myContext from "../../Context/Data/myContext";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import myContext from "../../context/data/myContext";
 import { toast } from "react-toastify";
-import { fireDB, auth } from "../../Firebase/FirebaseConfig";
-import Loader from "../../Components/Loader/Loader";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, fireDB } from "../../Firebase/FirebaseConfig";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import Loader from "../../components/loader/Loader";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -16,33 +16,32 @@ function Signup() {
   const { loading, setLoading } = context;
 
   const signup = async () => {
-    // console.log(name, password, email);
-
+    setLoading(true);
     if (name === "" || email === "" || password === "") {
-      return toast.error("All fileds must ne required");
+      return toast.error("All fields are required");
     }
+
     try {
-      setLoading(true);
       const users = await createUserWithEmailAndPassword(auth, email, password);
 
-      // console.log(users);
+      console.log(users);
 
       const user = {
         name: name,
         uid: users.user.uid,
         email: users.user.email,
-        Timestamp: Timestamp.now(),
+        time: Timestamp.now(),
       };
-      const useRef = collection(fireDB, "user");
-      await addDoc(useRef, user);
-      toast.success("Your Acoout Is successfully Created");
+      const userRef = collection(fireDB, "users");
+      await addDoc(userRef, user);
+      toast.success("Signup Succesfully");
       setName("");
       setEmail("");
       setPassword("");
       setLoading(false);
     } catch (error) {
-      setLoading(false);
       console.log(error);
+      setLoading(false);
     }
   };
 
