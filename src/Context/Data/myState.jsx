@@ -18,6 +18,8 @@ import { fireDB } from "../../Firebase/FirebaseConfig";
 function myState(props) {
   const [mode, setMode] = useState("light");
 
+  //toogle
+
   const toggleMode = () => {
     if (mode === "light") {
       setMode("dark");
@@ -43,6 +45,8 @@ function myState(props) {
       year: "numeric",
     }),
   });
+
+  //addproduct
 
   const addProduct = async () => {
     if (
@@ -75,6 +79,8 @@ function myState(props) {
 
   const [product, setProduct] = useState([]);
 
+  //getproduct
+
   const getProductData = async () => {
     setLoading(true);
 
@@ -101,6 +107,44 @@ function myState(props) {
     getProductData();
   }, []);
 
+  //edit
+
+  const editHandle = (item) => {
+    setProducts(editHandle);
+  };
+
+  //dlelete
+
+  const deleteProduct = async (item) => {
+    try {
+      setLoading(true);
+      await deleteDoc(doc(fireDB, "products", item.id));
+      toast.success("product deleted successfully");
+      setLoading(false);
+      getProductData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //update product
+
+  const updateProduct = async () => {
+    setLoading(true);
+    try {
+      await setDoc(doc(fireDB, "products", products.id), products);
+      toast.success("Product Updated successfully");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 800);
+      getProductData();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <MyContext.Provider
       value={{
@@ -112,6 +156,9 @@ function myState(props) {
         setProducts,
         addProduct,
         product,
+        editHandle,
+        deleteProduct,
+        updateProduct,
       }}
     >
       {props.children}
