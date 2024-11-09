@@ -81,7 +81,7 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  {user?.user?.email === "knupadhyay784@gmail.com" ? (
+                  {user?.user?.email === "aditya@gmail.com" ? (
                     <div className="flow-root">
                       <Link
                         to={"/dashboard"}
@@ -223,7 +223,7 @@ export default function Navbar() {
                     Order
                   </Link>
 
-                  {user?.user?.email === "knupadhyay784@gmail.com" ? (
+                  {user?.user?.email === "aditya@gmail.com" ? (
                     <Link
                       to={"/dashboard"}
                       className="text-sm font-medium text-gray-700 "
