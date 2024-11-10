@@ -22,7 +22,7 @@ export default function Navbar() {
   const cartItems = useSelector((state) => state.cart);
 
   return (
-    <div className="bg-white sticky top-0 z-50  ">
+    <div className="bg-white sticky top-0 z-10 relative">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -202,7 +202,7 @@ export default function Navbar() {
                       className=" text-2xl font-bold text-black  px-2 py-1 rounded"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      E-Bharat
+                      Trendify
                     </h1>
                   </div>
                 </Link>

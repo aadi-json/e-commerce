@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { fireDB } from "../../Firebase/FirebaseConfig";
+import Order from "../../Pages/Order/Order";
 
 function myState(props) {
   const [mode, setMode] = useState("light");
@@ -103,8 +104,31 @@ function myState(props) {
     }
   };
 
+  //getorder
+
+  const [order, setOrder] = useState([]);
+
+  const getOrderData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "orders"));
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+        setLoading(false);
+      });
+      setOrder(ordersArray);
+      console.log(ordersArray);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getProductData();
+    getOrderData();
   }, []);
 
   //edit
@@ -159,6 +183,7 @@ function myState(props) {
         editHandle,
         deleteProduct,
         updateProduct,
+        order,
       }}
     >
       {props.children}
