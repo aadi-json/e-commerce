@@ -106,31 +106,6 @@ function myState(props) {
 
   //getorder
 
-  const [order, setOrder] = useState([]);
-
-  const getOrderData = async () => {
-    setLoading(true);
-    try {
-      const result = await getDocs(collection(fireDB, "orders"));
-      const ordersArray = [];
-      result.forEach((doc) => {
-        ordersArray.push(doc.data());
-        setLoading(false);
-      });
-      setOrder(ordersArray);
-      console.log(ordersArray);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getProductData();
-    getOrderData();
-  }, []);
-
   //edit
 
   const editHandle = (item) => {
@@ -169,6 +144,54 @@ function myState(props) {
     }
   };
 
+  //getorder
+
+  const [order, setOrder] = useState([]);
+
+  const getOrderData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "orders"));
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+        setLoading(false);
+      });
+      setOrder(ordersArray);
+      // console.log(ordersArray);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  //getuser
+
+  const [user, setUser] = useState([]);
+
+  const getUserData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "user"));
+      const userArray = [];
+      result.forEach((doc) => {
+        userArray.push(doc.data());
+        setLoading(false);
+      });
+      setUser(userArray);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getProductData();
+    getOrderData();
+    getUserData();
+  }, []);
+
   return (
     <MyContext.Provider
       value={{
@@ -184,6 +207,7 @@ function myState(props) {
         deleteProduct,
         updateProduct,
         order,
+        user,
       }}
     >
       {props.children}
