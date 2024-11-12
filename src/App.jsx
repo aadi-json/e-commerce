@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
-import MyState from "./context/data/myState";
+import MyState from "./Context/Data/myState";
 import Order from "./pages/order/Order";
 import NoPage from "./pages/nopage/NoPage";
 import Cart from "./pages/cart/Cart";
@@ -17,6 +17,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./Pages/Admin/Page/AddProduct";
 import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
+import AllProducts from "./Pages/AllProducts/AllProducts";
+import ProductCard from "./Components/ProductCard/ProductCard";
 
 function App() {
   return (
@@ -24,11 +26,21 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/allproduct" element={<AllProducts />} />
+          <Route path="/productcard" element={<ProductCard />} />
           <Route
             path="/order"
             element={
               <ProtectedRoutes>
                 <Order />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/allproduct"
+            element={
+              <ProtectedRoutes>
+                <AllProducts />
               </ProtectedRoutes>
             }
           />
@@ -41,9 +53,10 @@ function App() {
               </ProtectedRoutesForAdmin>
             }
           />
-          <Route path="/productinfo" element={<ProductInfo />} />
+          <Route path="/productinfo/:id" element={<ProductInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
           <Route
             path="/addproduct"
             element={
@@ -52,6 +65,7 @@ function App() {
               </ProtectedRoutesForAdmin>
             }
           />
+
           <Route
             path="/updateproduct"
             element={
@@ -60,7 +74,7 @@ function App() {
               </ProtectedRoutesForAdmin>
             }
           />
-          <Route path="/*" element={<NoPage />} />
+          {/* <Route path="/*" element={<NoPage />} /> */}
         </Routes>
         <ToastContainer />
       </Router>

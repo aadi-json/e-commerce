@@ -6,7 +6,7 @@ import DashboardTab from "./DashboardTab";
 
 function Dashboard() {
   const context = useContext(myContext);
-  const { mode } = context;
+  const { mode, user, order, product } = context;
   return (
     <Layout>
       <section className="text-gray-600 body-font mt-10 mb-10">
@@ -30,7 +30,7 @@ function Dashboard() {
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  10
+                  {product.length}
                 </h2>
                 <p
                   className=" text-purple-500  font-bold"
@@ -58,7 +58,7 @@ function Dashboard() {
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  10
+                  {order.length}
                 </h2>
                 <p
                   className=" text-purple-500  font-bold"
@@ -86,7 +86,7 @@ function Dashboard() {
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  20
+                  {user.length}
                 </h2>
                 <p
                   className=" text-purple-500  font-bold"
@@ -114,7 +114,7 @@ function Dashboard() {
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  20
+                  {product.length}
                 </h2>
                 <p
                   className=" text-purple-500  font-bold"
