@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./Pages/Admin/Page/AddProduct";
 import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
-import AllProducts from "./Pages/AllProducts/AllProducts";
+
 import ProductCard from "./Components/ProductCard/ProductCard";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/allproduct" element={<AllProducts />} />
+
           <Route path="/productcard" element={<ProductCard />} />
           <Route
             path="/order"
@@ -36,14 +36,7 @@ function App() {
               </ProtectedRoutes>
             }
           />
-          <Route
-            path="/allproduct"
-            element={
-              <ProtectedRoutes>
-                <AllProducts />
-              </ProtectedRoutes>
-            }
-          />
+
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/dashboard"
