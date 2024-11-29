@@ -14,7 +14,7 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { fireDB } from "../../Firebase/FirebaseConfig";
-import Order from "../../Pages/order/Order";
+import Order from "../../Pages/Order/Order";
 
 function myState(props) {
   const [mode, setMode] = useState("light");

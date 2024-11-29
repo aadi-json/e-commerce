@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import myContext from "../../context/data/myContext";
+import myContext from "../../Context/Data/myContext";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../../Firebase/FirebaseConfig";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import Loader from "../../components/loader/Loader";
+import Loader from "../../Components/Loader/Loader";
 
 function Signup() {
   const [name, setName] = useState("");

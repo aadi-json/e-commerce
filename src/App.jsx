@@ -4,19 +4,19 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Home from "./Pages/home/Home";
+import Home from "./Pages/Home/Home";
 import MyState from "./Context/Data/myState";
-import Order from "./Pages/order/Order";
-import NoPage from "./Pages/nopage/NoPage";
-import Cart from "./Pages/cart/Cart";
-import Dashboard from "./Pages/admin/dashboard/Dashboard";
-import ProductInfo from "./Pages/productinfo/ProductInfo";
-import Login from "./Pages/registration/Login";
-import Signup from "./Pages/registration/Signup";
+import Order from "./Pages/Order/Order";
+import NoPage from "./Pages/Nopage/Nopage";
+import Cart from "./Pages/Cart/Cart";
+import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
+import ProductInfo from "./Pages/Productinfo/ProductInfo";
+import Login from "./Pages/Registration/Login";
+import Signup from "./Pages/Registration/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AddProduct from "./Pages/admin/Page/AddProduct";
-import UpdateProduct from "./Pages/admin/Page/UpdateProduct";
+import AddProduct from "./Pages/Admin/Page/AddProduct";
+import UpdateProduct from "./Pages/Admin/Page/UpdateProduct";
 
 import ProductCard from "./Components/ProductCard/ProductCard";
 

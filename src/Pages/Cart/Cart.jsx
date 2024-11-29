@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import myContext from "../../context/data/myContext";
-import Layout from "../../components/layout/Layout";
+import myContext from "../../Context/Data/myContext";
+import Layout from "../../Components/Layout/Layout";
 import Modal from "../../Components/Model/Model";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart } from "../../redux/cartSlice";
+import { deleteFromCart } from "../../Redux/CartSlice";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../Firebase/FirebaseConfig";

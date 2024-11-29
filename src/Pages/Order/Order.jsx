@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import myContext from "../../context/data/myContext";
-import Layout from "../../components/layout/Layout";
-import Loader from "../../components/loader/Loader";
+import myContext from "../../Context/Data/myContext";
+import Layout from "../../Components/Layout/Layout";
+import Loader from "../../Components/Loader/Loader";
 
 function Order() {
   const userid = JSON.parse(localStorage.getItem("user")).user.uid;

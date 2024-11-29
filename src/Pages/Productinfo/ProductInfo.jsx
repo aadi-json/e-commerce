@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import Layout from "../../components/layout/Layout";
-import myContext from "../../context/data/myContext";
+import Layout from "../../Components/Layout/Layout";
+import myContext from "../../Context/Data/myContext";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { addToCart } from "../../redux/cartSlice";
+import { addToCart } from "../../Redux/CartSlice";
 import { fireDB } from "../../Firebase/FirebaseConfig";
 
 function ProductInfo() {
