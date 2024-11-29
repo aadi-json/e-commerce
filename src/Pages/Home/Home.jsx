@@ -7,7 +7,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import Track from "../../Components/Track/Track";
 import Testimonial from "../../Components/Testomonial/Testtomonial";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, deleteFromCart } from "../../Redux/CartSlice";
+import { addToCart, deleteFromCart } from "../../redux/cartSlice";
 
 function Home() {
   const dispatch = useDispatch();
